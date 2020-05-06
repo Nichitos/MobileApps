@@ -1,7 +1,5 @@
 package com.example.lab2
 
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +24,7 @@ class TaskViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         mView = itemView.findViewById(R.id.view2)
     }
 
-    fun bind(task: Task) {
+    fun bind(task: TaskModel) {
         mTaskText?.text = task.taskName
         if (task.checked == true) {
             mView?.visibility = View.VISIBLE

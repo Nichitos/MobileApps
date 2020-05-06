@@ -2,7 +2,6 @@ package com.example.lab2
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -31,17 +30,18 @@ class MainActivity : AppCompatActivity() {
 
         println(call.request())
 
-        call.enqueue(object: Callback<WResponse> {
-            override fun onResponse(call: Call<WResponse>?, response: Response<WResponse>?) {
+        call.enqueue(object: Callback<WResponseModel> {
+            override fun onResponse(call: Call<WResponseModel>?, response: Response<WResponseModel>?) {
                 if (response != null) {
-                        val wResponse: WResponse = response!!.body()!!
-                    var temp = round(wResponse.main.temp.toInt() - 273.15)
-                    weather.text = "Temp: " + temp + " °C" + "\n " +
-                            "Humidity: " + wResponse.main.humidity + " %"
+                    val wResponse: WResponseModel = response!!.body()!!
+                    val model = TempAndHumidityModel("Temp: " + round(wResponse.main.temp.toInt() - 273.15) + " °C" + "\n " +
+                            "Humidity: " + wResponse.main.humidity + " %")
+                    val Controller = TempAndHumidityController(model, weather)
+                    Controller.setModelView()
                 }
             }
 
-            override fun onFailure(call: Call<WResponse>?, t: Throwable?) {
+            override fun onFailure(call: Call<WResponseModel>?, t: Throwable?) {
                 println("Error " + t!!.message)
             }
         })

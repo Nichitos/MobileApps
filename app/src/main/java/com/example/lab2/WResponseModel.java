@@ -3,14 +3,14 @@ package com.example.lab2;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class WResponse {
+public class WResponseModel {
 
     @SerializedName("main")
     @Expose
-    private Main main;
+    private MainModel main;
 
 
-    public Main getMain() {
+    public MainModel getMain() {
         return main;
     }
 

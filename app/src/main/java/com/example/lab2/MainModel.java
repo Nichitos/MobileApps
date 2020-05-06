@@ -3,7 +3,7 @@ package com.example.lab2;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Main {
+public class MainModel {
 
     @SerializedName("temp")
     @Expose

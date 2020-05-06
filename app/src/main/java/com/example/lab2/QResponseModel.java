@@ -3,14 +3,14 @@ package com.example.lab2;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class QResponse {
+public class QResponseModel {
 
     @SerializedName("contents")
     @Expose
-    private Contents contents;
+    private ContentsModel contents;
 
 
-    public Contents getContents() {
+    public ContentsModel getContents() {
         return contents;
     }
 

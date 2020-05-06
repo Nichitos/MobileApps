@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.activity_screen3.*
 
 class Screen3 : AppCompatActivity() {
 
-    val tasks : ArrayList<Task> = ArrayList();
+    val tasks : ArrayList<TaskModel> = ArrayList();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,11 +19,11 @@ class Screen3 : AppCompatActivity() {
         val addButton = findViewById<Button>(R.id.addButton)
 
         addButton.setOnClickListener{
-            tasks.add(Task("New task", false))
+            tasks.add(TaskModel("New task", false))
             recycler.adapter!!.notifyDataSetChanged()
         }
 
-        tasks.add(Task(strUser.toString(), false))
+        tasks.add(TaskModel(strUser.toString(), false))
 
         recycler.layoutManager = LinearLayoutManager(this)
 

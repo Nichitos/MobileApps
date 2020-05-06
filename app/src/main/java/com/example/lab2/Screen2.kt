@@ -6,9 +6,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_screen2.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,28 +29,28 @@ class Screen2 : AppCompatActivity() {
 
         val call = quoteAPI.getQuoteOfTheDay("en")
 
-        call.enqueue(object: Callback<QResponse> {
-            override fun onResponse(call: Call<QResponse>?, response: Response<QResponse>?) {
+        call.enqueue(object: Callback<QResponseModel> {
+            override fun onResponse(call: Call<QResponseModel>?, response: Response<QResponseModel>?) {
                 if (response != null) {
-                    val qResponse: QResponse = response!!.body()!!
-                    quote.text = "Daily quote: " + qResponse.contents.quotes[0].quote
+                    val current = LocalDateTime.now()
+                    val formatter = DateTimeFormatter.ofPattern("HH:mm")
+                    val formatted = current.format(formatter)
+                    val qResponse: QResponseModel = response!!.body()!!
+                    val model = SecondScreenModel(formatted,"Daily quote: " + qResponse.contents.quotes[0].quote)
+                    val controller = SecondScreenController(model, time, quote)
+                    controller.setQuote()
+                    controller.setTime()
                 }
             }
 
-            override fun onFailure(call: Call<QResponse>?, t: Throwable?) {
+            override fun onFailure(call: Call<QResponseModel>?, t: Throwable?) {
                 println("Error " + t!!.message)
             }
         })
 
-        val current = LocalDateTime.now()
-
         var bundle :Bundle ?=intent.extras
         var ss = bundle!!.getString("ss")
         textView3.setText("Good day " + ss + ", what is your focus for today?")
-
-        val formatter = DateTimeFormatter.ofPattern("HH:mm")
-        val formatted = current.format(formatter)
-        time.setText(formatted.toString())
 
         val editText = findViewById<EditText>(R.id.editText)
 

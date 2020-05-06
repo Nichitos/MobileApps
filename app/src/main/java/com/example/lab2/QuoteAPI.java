@@ -7,5 +7,5 @@ import retrofit2.http.Query;
 public interface QuoteAPI {
 
     @GET("qod")
-    Call< QResponse > getQuoteOfTheDay(@Query("lanugage") String language);
+    Call<QResponseModel> getQuoteOfTheDay(@Query("lanugage") String language);
 }

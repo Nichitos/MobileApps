@@ -3,13 +3,13 @@ package com.example.lab2;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Contents {
+public class ContentsModel {
 
     @SerializedName("quotes")
     @Expose
-    private Quote[] quotes;
+    private QuoteModel[] quotes;
 
-    public Quote[] getQuotes() {
+    public QuoteModel[] getQuotes() {
         return quotes;
     }
 }

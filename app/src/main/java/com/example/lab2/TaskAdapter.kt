@@ -1,15 +1,10 @@
 package com.example.lab2
 
-import android.content.Context
-import android.graphics.Movie
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
-import android.widget.BaseAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class TaskAdapter(private val list: List<Task>)
+class TaskAdapter(private val list: List<TaskModel>)
     : RecyclerView.Adapter<TaskViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -18,7 +13,7 @@ class TaskAdapter(private val list: List<Task>)
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        val task: Task = list[position]
+        val task: TaskModel = list[position]
         holder.bind(task)
     }
 

@@ -3,7 +3,7 @@ package com.example.lab2;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Quote {
+public class QuoteModel {
 
     @SerializedName("quote")
     @Expose
